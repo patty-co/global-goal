@@ -1,0 +1,9 @@
+html, body, html * {
+  font-family: "Cooper Black";
+  color: #264d70;
+  font-size: 75px;
+}
+
+p {
+  margin: 0;
+}
