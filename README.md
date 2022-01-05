@@ -18,8 +18,31 @@ Replace `CLIENT_ID` and `YOUR_HOST` with the values for your newly created Twitc
 
 ## Use it on your stream
 
-To use this tool on your stream simply add a browser source on your obs, choose local file and point to the src/index.html
+1. Download the files from this repository.
 
+![Getting Started](./1.png)
+
+2. Add a browser source on your obs and choose read from local file
+
+![Getting Started](./2.png)
+
+The tool will always run when your obs is open but it doesn't save when you close it!
+If you want your goal to continue to another stream make sure you take note of the percentage you have when ending the stream and change the values for next stream.
+
+There's 2 places you have to change it.
+
+src/index.html
+
+```html
+<p><b id="displayPercentage">0</b>%</p>
+```
+
+and src/js/chatconnect.js
+
+```javascript
+let currentPercentage = 0;
+let displayPercentage = 0;
+```
 
 ## Editing Values
 
