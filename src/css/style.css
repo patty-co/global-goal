@@ -7,3 +7,38 @@ html, body, html * {
 p {
   margin: 0;
 }
+
+progress {
+  width: 750;
+  height: 75;
+
+
+  color: lightblue;
+  background: rgba(102,51,153,1);
+}
+
+progress::-webkit-progress-value {
+  background: lightblue;
+}
+
+progress::-moz-progress-bar {
+  background: #336699;
+}
+
+progress::-webkit-progress-value {
+  background: rgba(102,51,153,1);
+}
+
+progress::-webkit-progress-bar {
+  background: #336699;
+}
+
+.progress-container:before {
+  color: lightblue;
+  content: attr(data-text);
+  position: absolute;
+  left: 338px;
+  right: 0;
+  top: 10px;
+  line-height:1em;
+}

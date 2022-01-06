@@ -2,6 +2,12 @@ let currentPercentage = 0;
 let displayPercentage = 0;
 
 let displayPercentageEl = document.getElementById('displayPercentage');
+let progressGoalEl = document.getElementById('progressGoal');
+
+if(progressGoalEl) {
+  progressGoalEl.max = GOAL_AMOUNT;
+  progressGoalEl.value = 50;
+}
 
 const options = {
   options: { 
@@ -24,6 +30,16 @@ const options = {
 const client = new tmi.Client(options)
 client.connect();
 
+function updateHtml() {
+  if(displayPercentageEl) {
+    displayPercentageEl.innerHTML = `${displayPercentage}`;
+  } else {
+    progressGoalEl.value = displayPercentage;
+    let data = progressGoalEl.getAttribute("data-text");
+    progressGoalEl.setAttribute("data-text", `${displayPercentage}${data.charAt(data.length - 1)}`)
+  }
+}
+
 function addSub(method) {
   let subPlan = method.plan;
   let percentageIncrease = 0;
@@ -45,7 +61,7 @@ function addSub(method) {
 
   currentPercentage += percentageIncrease;
   displayPercentage = Math.round(currentPercentage);
-  displayPercentageEl.innerHTML = `${displayPercentage}`;
+  updateHtml();
 }
 
 client.on('message', async (channel, userstate, message, self) => {
@@ -64,7 +80,8 @@ client.on('message', async (channel, userstate, message, self) => {
         
         currentPercentage += percentageIncrease;
         displayPercentage = Math.round(currentPercentage);
-        displayPercentageEl.innerHTML = `${displayPercentage}`;
+
+        updateHtml();
       }
     }
   }
@@ -81,7 +98,7 @@ client.on('cheer', (channel, userstate, message) => {
 
   currentPercentage += percentageIncrease;
   displayPercentage = Math.round(currentPercentage);
-  displayPercentageEl.innerHTML = `${displayPercentage}`;
+  updateHtml();
 })
 
 client.on('giftpaidupgrade', (channel, username, sender, userstate) => {
