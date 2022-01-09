@@ -3,10 +3,14 @@ let displayPercentage = 0;
 
 let displayPercentageEl = document.getElementById('displayPercentage');
 let progressGoalEl = document.getElementById('progressGoal');
+let condensedProgressGoal = document.getElementById('condensedProgressGoal');
 
 if(progressGoalEl) {
   progressGoalEl.max = GOAL_AMOUNT;
-  progressGoalEl.value = 50;
+  progressGoalEl.value = displayPercentage;
+} else if(condensedProgressGoal) {
+  condensedProgressGoal.max = GOAL_AMOUNT;
+  condensedProgressGoal.value = displayPercentage;
 }
 
 const options = {
@@ -33,10 +37,17 @@ client.connect();
 function updateHtml() {
   if(displayPercentageEl) {
     displayPercentageEl.innerHTML = `${displayPercentage}`;
-  } else {
+  } else if(progressGoalEl) {
     progressGoalEl.value = displayPercentage;
     let data = progressGoalEl.getAttribute("data-text");
     progressGoalEl.setAttribute("data-text", `${displayPercentage}${data.charAt(data.length - 1)}`)
+  } else if(displaycondensedProgressGoalPercentageEl) {
+    progressGoalEl.value = displayPercentage;
+    let data = progressGoalEl.getAttribute("data-text");
+    let newData = data[i].replace(/\(?\d+(?:\.\d+)? ?%\)? */g, `${displayPercentage}%`);
+    progressGoalEl.setAttribute("data-text", newData)
+
+    
   }
 }
 

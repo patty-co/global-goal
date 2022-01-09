@@ -2,18 +2,10 @@ html, body, html * {
   font-family: "Cooper Black";
   color: #264d70;
   font-size: 75px;
-}
-
-p {
-  margin: 0;
+  width: 750px;
 }
 
 progress {
-  width: 750;
-  height: 75;
-
-
-  color: lightblue;
   background: rgba(102,51,153,1);
 }
 
@@ -33,12 +25,35 @@ progress::-webkit-progress-bar {
   background: #336699;
 }
 
+.progress-container {
+  width: 750px;
+}
+
 .progress-container:before {
   color: lightblue;
   content: attr(data-text);
   position: absolute;
   left: 338px;
   right: 0;
-  top: 10px;
-  line-height:1em;
+  top: 83px;
+}
+
+.progress-condensed-container:before:before {
+  color: lightblue;
+  content: attr(data-text);
+  position: absolute;
+  left: 5px;
+  right: 0;
+  top: -7px;
+}
+
+p {
+  margin: 0;
+  text-align: center;
+}
+
+.progress {
+  display: flex;
+  overflow: hidden;
+  border-radius: 0.25rem;
 }
